@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalSelfieApp"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -26,6 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FullScreenImageActivity"/>
+
     </application>
 
 </manifest>

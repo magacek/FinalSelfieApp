@@ -1,5 +1,6 @@
 package com.example.finalselfieapp
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,10 +24,13 @@ class ImageAdapter(
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val uri = imageUris[position]
-        Glide.with(holder.imageView.context)
-            .load(imageUris[position])
-            .into(holder.imageView)
-        holder.imageView.setOnClickListener { onImageClick(uri) }
+        Glide.with(holder.imageView.context).load(uri).into(holder.imageView)
+
+        holder.imageView.setOnClickListener {
+            val intent = Intent(holder.imageView.context, FullScreenImageActivity::class.java)
+            intent.putExtra("IMAGE_URL", uri.toString())
+            holder.imageView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = imageUris.size
