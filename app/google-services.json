@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "252397256696",
+    "project_id": "finalselfie",
+    "storage_bucket": "finalselfie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252397256696:android:a8d09df3d3307d048fa00d",
+        "android_client_info": {
+          "package_name": "com.example.finalselfieapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPGiaLOSu_FNbSfyzWB1vInaWDEjf83LU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
