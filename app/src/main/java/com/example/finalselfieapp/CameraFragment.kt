@@ -1,4 +1,4 @@
-
+package com.example.finalselfieapp
 import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -19,7 +19,7 @@ import java.io.File
 
 class CameraFragment : Fragment() {
     private var _binding: FragmentCameraBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding should not be accessed after onDestroyView")
 
     private var imageCapture: ImageCapture? = null
 
@@ -123,6 +123,7 @@ class CameraFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding = null // Correctly clear the binding
+        imageCapture = null // Release the camera resources
     }
 }

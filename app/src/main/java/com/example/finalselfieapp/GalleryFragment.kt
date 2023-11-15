@@ -1,6 +1,6 @@
 package com.example.finalselfieapp
 
-import CameraFragment
+
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalselfieapp.databinding.FragmentGalleryBinding
 import com.google.android.gms.tasks.Tasks
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 
 class GalleryFragment : Fragment() {
@@ -28,13 +29,24 @@ class GalleryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 columns
+
+        binding.signOutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            navigateToLoginScreen()
+        }
 
         binding.openCameraButton.setOnClickListener {
             (activity as MainActivity).replaceFragment(CameraFragment())
         }
         fetchImages()
     }
+
+    private fun navigateToLoginScreen() {
+        if (activity is MainActivity) {
+            (activity as MainActivity).replaceFragment(LoginRegisterFragment())
+        }    }
+
 
     private fun uploadPhoto(uri: Uri) {
         val storageRef = FirebaseStorage.getInstance().reference.child("images/${uri.lastPathSegment}")
