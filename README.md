@@ -24,7 +24,8 @@ Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src="https://github.com/magacek/FinalSelfieApp/assets/70607808/297bad49-2eb1-498d-94ec-a6c1a1a2c238" width="600">
+
+<img src="https://github.com/magacek/FinalSelfieApp/assets/70607808/47f32301-c670-43d4-9a65-28f6b4681b07" width="600">
 
 
 
