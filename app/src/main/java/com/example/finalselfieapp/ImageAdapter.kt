@@ -9,6 +9,20 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
+/**
+ * ImageAdapter manages the binding of image URIs to the RecyclerView in GalleryFragment.
+ * It handles the layout of individual image items and manages user interaction with each image,
+ * such as clicking to view in full screen. This adapter is essential for dynamically displaying
+ * images in the gallery.
+ *
+ * @see RecyclerView.Adapter for managing views in a list.
+ * @see Glide for loading images efficiently.
+ * @see Uri for representing image locations.
+ * @see Intent for starting FullScreenImageActivity on image click.
+ *
+ * @author Matt Gacek
+ */
+
 class ImageAdapter(
     private val imageUris: List<Uri>,
     private val onImageClick: (Uri) -> Unit

@@ -7,6 +7,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.finalselfieapp.databinding.FragmentLoginRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
+/**
+ * LoginRegisterFragment provides the user interface and logic for user authentication.
+ * It handles both login and registration functionalities using Firebase Authentication.
+ * This fragment is the entry point for users to access the application's features.
+ *
+ * @see Fragment for fragment lifecycle and user interface.
+ * @see FirebaseAuth for handling user authentication with Firebase.
+ * @see MainActivity for navigating to other fragments upon successful login or registration.
+ *
+ * @author Matt Gacek
+ */
 
 class LoginRegisterFragment : Fragment() {
     private var _binding: FragmentLoginRegisterBinding? = null
@@ -33,7 +44,7 @@ class LoginRegisterFragment : Fragment() {
                         if (task.isSuccessful) {
                             (activity as MainActivity).replaceFragment(GalleryFragment())
                         } else {
-                            Toast.makeText(context, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show()
                         }
                     }
             } else {
@@ -51,7 +62,7 @@ class LoginRegisterFragment : Fragment() {
                         if (task.isSuccessful) {
                             (activity as MainActivity).replaceFragment(GalleryFragment())
                         } else {
-                            Toast.makeText(context, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Registration failed", Toast.LENGTH_SHORT).show()
                         }
                     }
             } else {

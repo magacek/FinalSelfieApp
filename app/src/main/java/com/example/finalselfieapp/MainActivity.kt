@@ -7,6 +7,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.finalselfieapp.ShakeDetector
+/**
+ * MainActivity serves as the primary activity of the application, managing fragment transitions
+ * and the sensor for shake detection. It initializes the app's user interface and orchestrates
+ * the navigation between different fragments based on user interaction and sensor events.
+ *
+ * @see AppCompatActivity for the basic application support.
+ * @see SensorManager and ShakeDetector for handling shake gestures.
+ * @see Fragment for managing various screens within the app.
+ *
+ * @author Matt Gacek
+ */
 
 
 class MainActivity : AppCompatActivity() {

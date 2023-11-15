@@ -14,9 +14,24 @@ import androidx.fragment.app.Fragment
 import com.example.finalselfieapp.GalleryFragment
 import com.example.finalselfieapp.MainActivity
 import com.example.finalselfieapp.databinding.FragmentCameraBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
+/**
+ * CameraFragment is responsible for handling camera functionalities in the application.
+ * It manages the camera lifecycle, permissions, and interactions. The fragment initializes
+ * the camera, handles photo capture, and interfaces with Firebase for photo storage.
+ * It provides a user-friendly interface for capturing and uploading photos.
+ *
+ * @see Fragment for the fragment lifecycle and user interface components.
+ * @see ImageCapture for capturing images using the camera.
+ * @see FirebaseStorage for storing captured images in Firebase.
+ * @see FirebaseAuth for user authentication with Firebase.
+ * @see ProcessCameraProvider for managing the camera lifecycle.
+ *
+ * @author Matt Gacek
+ */
 class CameraFragment : Fragment() {
     private var _binding: FragmentCameraBinding? = null
     private val binding get() = _binding ?: throw IllegalStateException("Binding should not be accessed after onDestroyView")
@@ -95,12 +110,18 @@ class CameraFragment : Fragment() {
     }
 
     private fun uploadPhoto(uri: Uri) {
-        val storageRef = FirebaseStorage.getInstance().reference.child("images/${uri.lastPathSegment}")
-        storageRef.putFile(uri).addOnSuccessListener {
-            Toast.makeText(context, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
-            (activity as MainActivity).replaceFragment(GalleryFragment())
-        }.addOnFailureListener {
-            Toast.makeText(context, "Failed to upload image", Toast.LENGTH_SHORT).show()
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            val userId = user.uid
+            val storageRef = FirebaseStorage.getInstance().reference.child("images/$userId/${uri.lastPathSegment}")
+            storageRef.putFile(uri).addOnSuccessListener {
+                Toast.makeText(context, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
+                (activity as MainActivity).replaceFragment(GalleryFragment())
+            }.addOnFailureListener {
+                Toast.makeText(context, "Failed to upload image", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(context, "User not authenticated", Toast.LENGTH_SHORT).show()
         }
     }
 

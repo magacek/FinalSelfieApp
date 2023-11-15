@@ -5,6 +5,18 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import kotlin.math.sqrt
+/**
+ * ShakeDetector implements the SensorEventListener interface to detect shake motion
+ * of the device. It is used in MainActivity to trigger actions, such as opening
+ * the camera, upon detecting a shake. It calculates the acceleration changes to
+ * determine if a shake gesture has occurred.
+ *
+ * @see SensorEventListener for receiving notifications from the SensorManager.
+ * @see SensorManager for accessing the device's sensors.
+ * @see MainActivity for invoking actions based on shake detection.
+ *
+ * @author Matt Gacek
+ */
 
 class ShakeDetector(private val onShake: () -> Unit) : SensorEventListener {
 
